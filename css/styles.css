@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+.topo{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgb(47, 47, 48);
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icone-esquerda{
+    width: 75px;
+    height: 53px;
+}
+.icone-direita{
+    width: 42.19px;
+    height: 30.94px;
+}
+.chat{
+    margin:0 80px;
+}
+
+.bottom{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 3px rgb(47, 47, 48);
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.digitar-mensagem{
+    width: 145px;
+    height: 30px;
+}
+.enviar-mensagem{
+    width: 26px;
+    height: 26px;
+}
