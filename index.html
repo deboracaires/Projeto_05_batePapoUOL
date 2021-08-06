@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/styles.css">
     <title>Bate-Papo UOL</title>
@@ -13,13 +16,30 @@
         <img class="icone-esquerda"src="/images/iconeuol.png">
         <ion-icon class="icone-direita" name="people"></ion-icon>
     </div>
-    <div class="chat"></div>
+    <ul class="chat">
+        <!-- <h1 class="mensagem entrada-saida">
+            <span class="horario">(09:21:45) </span> <strong>João</strong> entra na sala...
+        </h1>
+        <h1 class="mensagem padrao">
+            <span class="horario">(09:21:45) </span> <strong class="remetente">João</strong> <span class="para">para</span>
+            <strong class="destinatario">Todos: </strong> <span class="conteudo">Bom dia</span>
+        </h1>
+        <h1 class="mensagem padrao">
+            <span class="horario">(09:21:45) </span> <strong class="remetente">Maria</strong> <span class="para">para</span>
+            <strong class="destinatario">João: </strong> <span class="conteudo">Oi João :)</span>
+        </h1>
+        <h1 class="mensagem entrada-saida">
+            <span class="horario">(09:21:45) </span> <strong>Maria</strong> sai da sala...
+        </h1> -->
+    </ul>
     <div class="bottom">
-        <input class="digitar-mensagem" id="mensagem" onclick="digitarMensagem(this)" type="text" placeholder="Escreva aqui...">
+        <input class="digitar-mensagem" onclick="digitarMensagem(this)" type="text" placeholder="Escreva aqui...">
         <ion-icon class="enviar-mensagem" name="paper-plane-outline"></ion-icon>
     </div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/scripts.js"></script>
+    
 </body>
 </html>
