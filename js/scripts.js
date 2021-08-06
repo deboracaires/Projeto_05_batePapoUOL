@@ -1,4 +1,4 @@
-let mensagens = [];
+    let mensagens = [];
 
 // entrar na sala
 let nomeUsuario = '';
@@ -17,7 +17,13 @@ function tratarError(erro){
     entrarSala();
 }
 
-// 
+// manter conexão com o servidor
+setInterval(manterConexao, 5000);
+
+function manterConexao(){
+    const dados = {name: nomeUsuario};
+    const requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/status', dados);
+}
 
 //altera o tamanho da barra de digitar texto quando o usuário clicar
 function digitarMensagem(elemento){
