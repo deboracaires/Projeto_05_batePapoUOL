@@ -41,7 +41,11 @@
     justify-content: space-between;
 }
 .digitar-mensagem{
-    width: 145px;
+    width: 40vw;
+    height: 30px;  
+}
+.digitando{
+    width: 80vw;
     height: 30px;
 }
 .enviar-mensagem{
