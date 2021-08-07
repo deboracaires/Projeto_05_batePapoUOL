@@ -33,10 +33,11 @@
         </h1> -->
     </ul>
     <div class="bottom">
-        <input class="digitar-mensagem" onclick="digitarMensagem(this)" type="text" placeholder="Escreva aqui...">
-        <ion-icon class="enviar-mensagem" name="paper-plane-outline"></ion-icon>
+        <input class="digitar-mensagem" id="mensagem" onclick="digitarMensagem(this)" type="text" placeholder="Escreva aqui...">
+        <ion-icon class="enviar-mensagem" onclick="enviarMensagem(this)" name="paper-plane-outline"></ion-icon>
     </div>
 
+    <!-- onclick="enviarMensagem(this)" -->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/scripts.js"></script>

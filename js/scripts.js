@@ -27,7 +27,7 @@ function manterConexao(){
 
 //altera o tamanho da barra de digitar texto quando o usuário clicar
 function digitarMensagem(elemento){
-    elemento.style.width = '80vw';
+    elemento.style.width = '75vw';
 }
 
 //pega as mensagens no servidor
@@ -65,6 +65,27 @@ function renderizarMensagens(){
         }
     } 
     chat.lastChild.scrollIntoView();
+}
+
+//enviar mensagens
+let mensagemEnviada = [];
+function enviarMensagem(elemento){
+    mensagemEnviada = document.getElementById("mensagem").value;
+    let dados = 
+    {
+        from: nomeUsuario,
+	    to: "Todos",
+	    text: mensagemEnviada,
+	    type: "message"
+    }
+    if(mensagemEnviada === ''){
+
+    }else{
+        const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages", dados);
+
+    }
+    document.getElementById("mensagem").value = '';
+    console.log(mensagemEnviada);
 }
 
 

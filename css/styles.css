@@ -80,3 +80,8 @@ strong{
     width: 26px;
     height: 26px;
 }
+.enviar-mensagem:active{
+    transform: scale(0.97);
+    transition: transform .4s;
+    color: grey;
+}
