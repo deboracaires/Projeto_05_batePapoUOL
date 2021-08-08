@@ -104,40 +104,59 @@ function buscarParticipantes(){
 
 function processarParticipantes(resposta){
     participantesAtivos = resposta.data;
-    adicionarParticipantesAtivos();
+    const div = document.querySelector(".menu-participantes");
+    
 }
+let intervaloParticipantes = null;
+
+// adicionar os participantes ativos
 function adicionarParticipantesAtivos(){
     const div = document.querySelector(".menu-participantes");
     div.innerHTML = '';
     div.innerHTML += `<h2> Escolha um contato para enviar mensagem </h2>
     <div class="participantes"> 
-        <div class="participante" onclick="selecionarParticipante(this)">
+        <div class="participante selecionado" onclick="selecionarParticipante(this, 'Todos')">
             <ion-icon class="participante-icone" name="people"></ion-icon>
             <div class="participante-nome">Todos</div>
+            <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+            </div>
         </div>
     </div>`;
     for(let i = 0; i < participantesAtivos.length; i++){
         div.innerHTML += `
-        <div class="participante" onclick="selecionarParticipante(this)">
+        <div class="participante" onclick="selecionarParticipante(this, "${participantesAtivos[i].name}")">
             <ion-icon class="participante-icone" name="person"></ion-icon>
             <div class="participante-nome">${participantesAtivos[i].name}</div>
+            <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+            </div>
         </div>`;
     }
     div.innerHTML += `
     <div class="visibilidade">
         <h2> Escolha a visibilidade: </h2>
-        <div class="publico" onclick="selecionarVisibilidade(this)">
+        <div class="publico selecionado" onclick="selecionarVisibilidade(this)">
             <ion-icon class="publico-icone" name="lock-open"></ion-icon>
             <div class="publico-nome">Público</div>
+            <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+            </div>
         </div>
         <div class="reservadamente" onclick="selecionarVisibilidade(this)">
             <ion-icon class="reservadamente-icone" name="lock-closed"></ion-icon>
             <div class="reservadamente-nome">Reservadamente</div>
+            <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+            </div>
         </div>
     </div>`;
+    
+    
 }
 
 //menu participantes
+
 
 function abrirMenuParticipantes(){
     const body = document.querySelector("body");
@@ -146,43 +165,66 @@ function abrirMenuParticipantes(){
     <div class="menu-participantes">
         <h2> Escolha um contato para enviar mensagem </h2>
         <div class="participantes"> 
-            <div class="participante" onclick="selecionarParticipante(this)">
+            <div class="participante selecionado" onclick="selecionarParticipante(this, "Todos")">
                 <ion-icon class="participante-icone" name="people"></ion-icon>
                 <div class="participante-nome">Todos</div>
+                <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+                </div>
             </div>
         </div>
         <div class="visibilidade">
             <h2> Escolha a visibilidade: </h2>
-            <div class="publico" onclick="selecionarVisibilidade(this)">
+            <div class="publico selecionado" onclick="selecionarVisibilidade(this)">
                 <ion-icon class="publico-icone" name="lock-open"></ion-icon>
                 <div class="publico-nome">Público</div>
+                <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+                </div>
             </div>
             <div class="reservadamente" onclick="selecionarVisibilidade(this)">
                 <ion-icon class="reservadamente-icone" name="lock-closed"></ion-icon>
                 <div class="reservadamente-nome">Reservadamente</div>
+                <div class="check">
+                <ion-icon name="checkmark-sharp"></ion-icon>
+                </div>
             </div>
         </div>
     </div>
     <div class="esquerda-menu" onclick="voltarInicio()">
     </div>
     `;
-    
+    intervaloParticipantes = setInterval(adicionarParticipantesAtivos, 3000);
 }
 
 function voltarInicio(){
     const body = document.querySelector("body");
     body.removeChild(body.children[7]);
     body.removeChild(body.children[7]);
+    clearInterval(intervaloParticipantes);
 }
 
 // determinar para quem e de que modo a mensagem será enviada
+let participanteSelecionado = '';
+function selecionarParticipante(elemento, nomeParticipante){
+    const botaoMarcado = document.querySelector(".participante.selecionado");
 
-function selecionarParticipante(elemento){
-
+    if(botaoMarcado !== null){
+        botaoMarcado.classList.remove("selecionado");
+    }
+    elemento.classList.add("selecionado");
+    participanteSelecionado = nomeParticipante;
+    console.log(participanteSelecionado);
 }
+let visibilidadeSelecionada = '';
 
 function selecionarVisibilidade(elemento){
+    const botaoMarcado = document.querySelector(".visibilidade.selecionado");
 
+    if(botaoMarcado !== null){
+        botaoMarcado.classList.remove("selecionado");
+    }
+    elemento.classList.add("selecionado");
 }
 
 

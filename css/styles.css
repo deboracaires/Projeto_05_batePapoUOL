@@ -141,6 +141,12 @@ h2{
     transition: transform .4s;
     color: grey;
 }
+.check{
+    color: greenyellow;
+}
+.selecionado{
+
+}
 
 .esquerda-menu{
     height: 100vh;
