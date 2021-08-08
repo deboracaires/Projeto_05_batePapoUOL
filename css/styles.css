@@ -136,6 +136,11 @@ h2{
     align-items: center;
     padding-left: 5px;
 }
+.participante:active, .publico:active, .reservadamente:active{
+    transform: scale(0.97);
+    transition: transform .4s;
+    color: grey;
+}
 
 .esquerda-menu{
     height: 100vh;

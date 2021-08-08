@@ -1,4 +1,4 @@
-    let mensagens = [];
+let mensagens = [];
 
 // entrar na sala
 let nomeUsuario = '';
@@ -23,6 +23,10 @@ setInterval(manterConexao, 5000);
 function manterConexao(){
     const dados = {name: nomeUsuario};
     const requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/status', dados);
+    requisicao.catch(tratarErrorConexao);
+}
+function tratarErrorConexao(){
+    alert("Você foi desconectado por inatividade! Atualize a página para entrar novamente!")
 }
 
 //altera o tamanho da barra de digitar texto quando o usuário clicar
@@ -88,27 +92,72 @@ function enviarMensagem(elemento){
     console.log(mensagemEnviada);
 }
 
+// buscar participantes ativos
+let participantesAtivos = [];
+
+setInterval(buscarParticipantes, 3000);
+
+function buscarParticipantes(){
+    const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants');
+    promessa.then(processarParticipantes);
+}
+
+function processarParticipantes(resposta){
+    participantesAtivos = resposta.data;
+    adicionarParticipantesAtivos();
+}
+function adicionarParticipantesAtivos(){
+    const div = document.querySelector(".menu-participantes");
+    div.innerHTML = '';
+    div.innerHTML += `<h2> Escolha um contato para enviar mensagem </h2>
+    <div class="participantes"> 
+        <div class="participante" onclick="selecionarParticipante(this)">
+            <ion-icon class="participante-icone" name="people"></ion-icon>
+            <div class="participante-nome">Todos</div>
+        </div>
+    </div>`;
+    for(let i = 0; i < participantesAtivos.length; i++){
+        div.innerHTML += `
+        <div class="participante" onclick="selecionarParticipante(this)">
+            <ion-icon class="participante-icone" name="person"></ion-icon>
+            <div class="participante-nome">${participantesAtivos[i].name}</div>
+        </div>`;
+    }
+    div.innerHTML += `
+    <div class="visibilidade">
+        <h2> Escolha a visibilidade: </h2>
+        <div class="publico" onclick="selecionarVisibilidade(this)">
+            <ion-icon class="publico-icone" name="lock-open"></ion-icon>
+            <div class="publico-nome">Público</div>
+        </div>
+        <div class="reservadamente" onclick="selecionarVisibilidade(this)">
+            <ion-icon class="reservadamente-icone" name="lock-closed"></ion-icon>
+            <div class="reservadamente-nome">Reservadamente</div>
+        </div>
+    </div>`;
+}
+
 //menu participantes
 
 function abrirMenuParticipantes(){
-    const div = document.querySelector("body");
+    const body = document.querySelector("body");
     
-    div.innerHTML += `
+    body.innerHTML += `
     <div class="menu-participantes">
         <h2> Escolha um contato para enviar mensagem </h2>
         <div class="participantes"> 
-            <div class="participante">
+            <div class="participante" onclick="selecionarParticipante(this)">
                 <ion-icon class="participante-icone" name="people"></ion-icon>
                 <div class="participante-nome">Todos</div>
             </div>
         </div>
         <div class="visibilidade">
             <h2> Escolha a visibilidade: </h2>
-            <div class="publico">
+            <div class="publico" onclick="selecionarVisibilidade(this)">
                 <ion-icon class="publico-icone" name="lock-open"></ion-icon>
                 <div class="publico-nome">Público</div>
             </div>
-            <div class="reservadamente">
+            <div class="reservadamente" onclick="selecionarVisibilidade(this)">
                 <ion-icon class="reservadamente-icone" name="lock-closed"></ion-icon>
                 <div class="reservadamente-nome">Reservadamente</div>
             </div>
@@ -124,6 +173,16 @@ function voltarInicio(){
     const body = document.querySelector("body");
     body.removeChild(body.children[7]);
     body.removeChild(body.children[7]);
+}
+
+// determinar para quem e de que modo a mensagem será enviada
+
+function selecionarParticipante(elemento){
+
+}
+
+function selecionarVisibilidade(elemento){
+
 }
 
 
