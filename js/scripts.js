@@ -52,7 +52,7 @@ function processarMensagens(resposta) {
 function renderizarMensagens(){
     const chat = document.querySelector("ul");
     chat.innerHTML = '';
-    for(let i = 0; i < mensagens.length; i++){
+    for(let i = 80; i < mensagens.length; i++){
         if(mensagens[i].type === "status"){
             chat.innerHTML += `
             <h1 class="mensagem entrada-saida">
@@ -86,14 +86,17 @@ function enviarMensagem(elemento){
 
     }else{
         const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/messages", dados);
-
+        promessa.catch(tratarErroMensagem);
     }
     document.getElementById("mensagem").value = '';
-    console.log(mensagemEnviada);
+}
+
+function tratarErroMensagem(erro){
+    window.location.reload(true);
 }
 
 // buscar participantes ativos
-let participantesAtivos = [];
+let participantesAtivos = {};
 
 setInterval(buscarParticipantes, 3000);
 
@@ -107,22 +110,23 @@ function processarParticipantes(resposta){
     const div = document.querySelector(".menu-participantes");
     
 }
-let intervaloParticipantes = null;
+
 
 // adicionar os participantes ativos
 function adicionarParticipantesAtivos(){
-    const div = document.querySelector(".menu-participantes");
+    const div = document.querySelector(".participantes");
+    
+    
     div.innerHTML = '';
-    div.innerHTML += `<h2> Escolha um contato para enviar mensagem </h2>
-    <div class="participantes"> 
-        <div class="participante selecionado" onclick="selecionarParticipante(this, 'Todos')">
-            <ion-icon class="participante-icone" name="people"></ion-icon>
-            <div class="participante-nome">Todos</div>
-            <div class="check">
-                <ion-icon name="checkmark-sharp"></ion-icon>
-            </div>
+    div.innerHTML += `
+    <div class="participante selecionado" onclick="selecionarParticipante(this, "Todos")">
+        <ion-icon class="participante-icone" name="people"></ion-icon>
+        <div class="participante-nome">Todos</div>
+        <div class="check">
+        <ion-icon name="checkmark-sharp"></ion-icon>
         </div>
     </div>`;
+    
     for(let i = 0; i < participantesAtivos.length; i++){
         div.innerHTML += `
         <div class="participante" onclick="selecionarParticipante(this, "${participantesAtivos[i].name}")">
@@ -132,27 +136,7 @@ function adicionarParticipantesAtivos(){
                 <ion-icon name="checkmark-sharp"></ion-icon>
             </div>
         </div>`;
-    }
-    div.innerHTML += `
-    <div class="visibilidade">
-        <h2> Escolha a visibilidade: </h2>
-        <div class="publico selecionado" onclick="selecionarVisibilidade(this)">
-            <ion-icon class="publico-icone" name="lock-open"></ion-icon>
-            <div class="publico-nome">Público</div>
-            <div class="check">
-                <ion-icon name="checkmark-sharp"></ion-icon>
-            </div>
-        </div>
-        <div class="reservadamente" onclick="selecionarVisibilidade(this)">
-            <ion-icon class="reservadamente-icone" name="lock-closed"></ion-icon>
-            <div class="reservadamente-nome">Reservadamente</div>
-            <div class="check">
-                <ion-icon name="checkmark-sharp"></ion-icon>
-            </div>
-        </div>
-    </div>`;
-    
-    
+    }  
 }
 
 //menu participantes
