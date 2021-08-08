@@ -88,6 +88,43 @@ function enviarMensagem(elemento){
     console.log(mensagemEnviada);
 }
 
+//menu participantes
+
+function abrirMenuParticipantes(){
+    const div = document.querySelector("body");
+    
+    div.innerHTML += `
+    <div class="menu-participantes">
+        <h2> Escolha um contato para enviar mensagem </h2>
+        <div class="participantes"> 
+            <div class="participante">
+                <ion-icon class="participante-icone" name="people"></ion-icon>
+                <div class="participante-nome">Todos</div>
+            </div>
+        </div>
+        <div class="visibilidade">
+            <h2> Escolha a visibilidade: </h2>
+            <div class="publico">
+                <ion-icon class="publico-icone" name="lock-open"></ion-icon>
+                <div class="publico-nome">Público</div>
+            </div>
+            <div class="reservadamente">
+                <ion-icon class="reservadamente-icone" name="lock-closed"></ion-icon>
+                <div class="reservadamente-nome">Reservadamente</div>
+            </div>
+        </div>
+    </div>
+    <div class="esquerda-menu" onclick="voltarInicio()">
+    </div>
+    `;
+    
+}
+
+function voltarInicio(){
+    const body = document.querySelector("body");
+    body.removeChild(body.children[7]);
+    body.removeChild(body.children[7]);
+}
 
 
 

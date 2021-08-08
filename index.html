@@ -14,8 +14,9 @@
 <body>
     <div class="topo">
         <img class="icone-esquerda"src="/images/iconeuol.png">
-        <ion-icon class="icone-direita" name="people"></ion-icon>
+        <ion-icon class="icone-direita" onclick="abrirMenuParticipantes()" name="people"></ion-icon>
     </div>
+    
     <ul class="chat">
         <!-- <h1 class="mensagem entrada-saida">
             <span class="horario">(09:21:45) </span> <strong>João</strong> entra na sala...
@@ -32,10 +33,15 @@
             <span class="horario">(09:21:45) </span> <strong>Maria</strong> sai da sala...
         </h1> -->
     </ul>
+    
     <div class="bottom">
         <input class="digitar-mensagem" id="mensagem" onclick="digitarMensagem(this)" type="text" placeholder="Escreva aqui...">
         <ion-icon class="enviar-mensagem" onclick="enviarMensagem(this)" name="paper-plane-outline"></ion-icon>
     </div>
+    <!-- <div class="menu-participantes">
+        menu
+    </div> -->
+    
 
     <!-- onclick="enviarMensagem(this)" -->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
